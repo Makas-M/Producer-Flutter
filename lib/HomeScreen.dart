@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../SongModel.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -12,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    List<Song> songs = Song.songs;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -45,12 +47,47 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            children: const [
-              _DiscoveredMusic(),
+            children: [
+              const _DiscoveredMusic(),
+              Column(children: [
+                SectionHeader(title: 'Trending Music'),
+              ])
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class SectionHeader extends StatelessWidget {
+  const SectionHeader({
+    Key? key,
+    required this.title,
+    this.action = 'View More',
+  }) : super(key: key);
+  final String title;
+  final String action;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        Text(
+          action,
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Colors.white,
+              ),
+        ),
+      ],
     );
   }
 }
@@ -90,8 +127,7 @@ class _DiscoveredMusic extends StatelessWidget {
                   .textTheme
                   .bodyMedium!
                   .copyWith(color: Colors.grey.shade400),
-              prefixIcon:
-                  Icon(Icons.search, color: Colors.grey.shade400),
+              prefixIcon: Icon(Icons.search, color: Colors.grey.shade400),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15.0),
                 borderSide: BorderSide.none,

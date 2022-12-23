@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 class Song {
   final String title;
@@ -31,6 +31,5 @@ class Song {
     url: 'assets/music/K3.mp3',
     coverUrl: 'assets/images/cover.jpg',
     ),
-
   ];
 }
