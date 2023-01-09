@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../SongModel.dart';
+import 'widgets/section_header.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -49,45 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               const _DiscoveredMusic(),
-              Column(children: [
-                SectionHeader(title: 'Trending Music'),
-              ])
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  top: 20.0,
+                  bottom: 20.0,
+                ),
+                child: Column(children: const [
+                  SectionHeader(title: 'Trending Music'),
+                ]),
+              )
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  const SectionHeader({
-    Key? key,
-    required this.title,
-    this.action = 'View More',
-  }) : super(key: key);
-  final String title;
-  final String action;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        Text(
-          action,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Colors.white,
-              ),
-        ),
-      ],
     );
   }
 }
@@ -121,7 +97,7 @@ class _DiscoveredMusic extends StatelessWidget {
             decoration: InputDecoration(
               isDense: true,
               filled: true,
-              fillColor: Colors.white,
+              fillColor: Colors.black,
               hintText: 'search',
               hintStyle: Theme.of(context)
                   .textTheme
